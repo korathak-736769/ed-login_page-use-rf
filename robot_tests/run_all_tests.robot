@@ -1,31 +1,25 @@
 *** Settings ***
-Documentation    Master suite that runs all test cases
-Resource         resource.robot
+Documentation   
 Library          Process
+Library    OperatingSystem
+Suite Setup      Create Directory    ${OUTPUT DIR}
+
+*** Variables ***
+${OUTPUT DIR}    ${CURDIR}${/}test_results
 
 *** Test Cases ***
-Run All Tests
-    Log    Starting All Tests    console=yes
-    
-    # Run Login Tests
-    Run Tests    login_tests.robot
-    
-    # Run SQL Injection Tests
-    Run Tests    sql_injection_tests.robot
-    
-    # Run Registration Tests
-    Run Tests    registration_tests.robot
-    
-    # Run Profile Tests
-    Run Tests    profile_tests.robot
-    
-    Log    All Tests Completed    console=yes
+Run All Tests and Generate Single Report
+    Log    Starting all tests...    console=yes
+    ${result}=    Run Process
+    ...    robot
+    ...    --name    "All Tests"
+    ...    --outputdir    ${OUTPUT DIR}
+    ...    --exclude    run_all_tests
+    ...    .
+    ...    shell=True
+    ...    cwd=${CURDIR}
+    Log    ${result.stdout}
+    Log    All tests completed. Reports are in '${OUTPUT DIR}'.    console=yes
+    Should Be Equal As Integers    ${result.rc}    0
 
 *** Keywords ***
-Run Tests
-    [Arguments]    ${test_file}
-    Log    Running tests from ${test_file}    console=yes
-    Create Directory    ${CURDIR}/test_results
-    ${result}=    Run Process    robot    -d    test_results    ${test_file}    shell=True    cwd=${CURDIR}
-    Log    ${result.stdout}
-    Log    Test result: ${result.rc}    console=yes

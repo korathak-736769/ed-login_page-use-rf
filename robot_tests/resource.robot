@@ -5,12 +5,12 @@ Library    OperatingSystem
 Library    String
 
 *** Variables ***
-${BROWSER}        chrome
+${BROWSER}        firefox
 ${URL}            http://localhost/ed-login_page-use-rf
 ${DB_HOST}        localhost
 ${DB_NAME}        testdb
 ${DB_USER}        root
-${DB_PASS}        ${EMPTY}
+${DB_PASS}        root
 
 *** Keywords ***
 Connect To MySQL Database
