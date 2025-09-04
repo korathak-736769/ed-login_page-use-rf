@@ -37,7 +37,6 @@ SQL Injection Test with Multiple Statements
     [Documentation]    Test using SQL Injection with multiple statements (should not work with MySQLi)
     Input Credentials    ${SQL_INJECTION_PAYLOADS}[6]    anything
     Submit Login Form
-    # Multiple statements usually don't work with MySQLi, so this should fail
     Verify Failed Login
 
 *** Keywords ***

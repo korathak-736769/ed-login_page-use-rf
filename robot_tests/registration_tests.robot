@@ -50,16 +50,13 @@ Valid Registration Test
     Submit Registration Form
     Verify Successful Registration
     Verify User Exists In Database    ${user_data}[0]
-    # Clean up after test
     Delete Test User    ${user_data}[0]
     
 Registration With Existing Username
-    # First, get an existing user
     Connect To MySQL Database
     ${existing_user}=    Query    SELECT username FROM users LIMIT 1
     ${existing_username}=    Set Variable    ${existing_user[0][0]}
     
-    # Try to register with the same username
     ${user_data}=    Generate Random User Data
     Input Registration Form    ${existing_username}    ${user_data}[1]    ${user_data}[2]    ${user_data}[3]
     Submit Registration Form
@@ -68,6 +65,4 @@ Registration With Existing Username
 Empty Fields Registration Test
     Input Registration Form    ${EMPTY}    ${EMPTY}    ${EMPTY}    ${EMPTY}
     Submit Registration Form
-    # HTML required validation should prevent form submission
-    # Form should still be visible
     Page Should Contain Element    xpath=//form

@@ -30,8 +30,6 @@ Invalid Login Test - Non-existent User
 Empty Credentials Test
     Input Credentials    ${EMPTY}    ${EMPTY}
     Submit Login Form
-    # HTML required validation should prevent form submission
-    # Depending on browser behavior, we might need different verification
     Page Should Not Contain    User Profile
 
 Login And Logout Test
