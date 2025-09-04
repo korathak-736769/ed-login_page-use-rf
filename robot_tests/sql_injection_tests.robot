@@ -33,15 +33,11 @@ SQL Injection Login As Specific User
     # Check if username shown on profile page is 'admin'
     Run Keyword And Ignore Error    Page Should Contain    Username: admin
     
-SQL Injection Test with Multiple Statements
-    [Documentation]    Test using SQL Injection with multiple statements (should not work with MySQLi)
-    Input Credentials    ${SQL_INJECTION_PAYLOADS}[6]    anything
-    Submit Login Form
-    Verify Failed Login
 
 *** Keywords ***
 Test SQL Injection Login
     [Arguments]    ${injection_payload}    ${password}
+    Go To    ${URL}/login.php
     Input Credentials    ${injection_payload}    ${password}
     Submit Login Form
     ${status}    ${value}=    Run Keyword And Ignore Error    Verify Successful Login

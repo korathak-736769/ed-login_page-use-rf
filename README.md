@@ -57,7 +57,6 @@ robot run_all_tests.robot
 ### 2. SQL Injection Tests
 - ทดสอบ bypass login ด้วย SQL Injection
 - ทดสอบ login เป็นผู้ใช้เฉพาะด้วย SQL Injection
-- ทดสอบ SQL Injection ด้วย multiple statements
 
 ### 3. Registration Tests
 - ทดสอบการลงทะเบียนปกติ
